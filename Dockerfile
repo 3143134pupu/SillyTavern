@@ -47,5 +47,5 @@ RUN git config --global --add safe.directory "*"
 
 EXPOSE 8000
 
-# Ensure proper handling of kernel signals
-ENTRYPOINT ["tini", "--", "./docker-entrypoint.sh"]
+ENTRYPOINT ["tini", "--"]
+CMD ["node", "server.js", "--listen", "--host", "0.0.0.0", "--port", "${PORT:-8000}"]
