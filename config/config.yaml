@@ -1,0 +1,19 @@
+# === BASIC SERVER SETTINGS ===
+port: 8000
+listen: true
+
+# === SECURITY ===
+whitelistMode: false
+
+# === AUTH ===
+auth:
+  enabled: false
+  username: admin
+  password: changeme
+
+# === DATA STORAGE ===
+dataDirectory: data
+
+# === LOGGING ===
+logging:
+  enabled: true
