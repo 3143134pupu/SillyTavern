@@ -4,7 +4,7 @@ FROM node:lts-alpine3.22
 ARG APP_HOME=/home/node/app
 
 # Install system dependencies
-RUN apk add --no-cache gcompat tini git git-lfs
+RUN apk add --no-cache gcompat tini git git-lfs dos2unix
 
 # Create app directory
 WORKDIR ${APP_HOME}
@@ -15,6 +15,9 @@ ENV NODE_ENV=production
 # Bundle app source
 COPY . ./
 
+# ✅ Создаём нужные директории ДО запуска
+RUN mkdir -p data config
+
 RUN \
   echo "*** Install npm packages ***" && \
   npm ci --no-audit --no-fund --loglevel=error --no-progress --omit=dev && npm cache clean --force
@@ -22,8 +25,7 @@ RUN \
 # Create config directory and link config.yaml
 RUN \
   rm -f "config.yaml" || true && \
-  ln -s "./config/config.yaml" "config.yaml" || true && \
-  mkdir "config" || true
+  ln -s "./config/config.yaml" "config.yaml" || true
 
 # Pre-compile public libraries
 RUN \
