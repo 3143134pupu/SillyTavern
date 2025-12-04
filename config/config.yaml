@@ -1,19 +1,41 @@
-# === BASIC SERVER SETTINGS ===
+# === NETWORK ===
+listenAddress:
+  ipv4: "0.0.0.0"
+  ipv6: "::"
+
+protocol:
+  ipv4: true
+  ipv6: false
+
 port: 8000
 listen: true
 
 # === SECURITY ===
-whitelistMode: false
+enableForwardedWhitelist: false
 
-# === AUTH ===
-auth:
+whitelist: []
+
+whitelistDockerHosts: false
+
+hostWhitelist:
   enabled: false
+
+basicAuthMode: true
+
+basicAuthUser:
   username: admin
   password: changeme
 
-# === DATA STORAGE ===
-dataDirectory: data
+enableUserAccounts: false
 
-# === LOGGING ===
+disableCsrfProtection: true
+
+securityOverride: true
+
+# === DATA ===
+dataRoot: "./data"
+
+# === LOGS ===
 logging:
-  enabled: true
+  enableAccessLog: true
+  minLogLevel: info
